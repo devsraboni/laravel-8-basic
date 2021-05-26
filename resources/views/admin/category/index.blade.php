@@ -16,17 +16,19 @@
                         <tr>
                         <th scope="col">SL</th>
                         <th scope="col">Category Name</th>
+                        <th scope="col">User</th>
                         <th scope="col">Created</th>
                         </tr>
                     </thead>
                     <tbody>
-                        {{-- @foreach ($users as $user) --}}
+                        @foreach ($categories as $category)
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+                            <td>{{ $loop->index }}</td>
+                            <td>{{ $category->category_name }}</td>
+                            <td>{{ $category->user_id }}</td>
+                            <td>{{ $category->created_at->diffForHumans() }}</td>
                         </tr>
-                        {{-- @endforeach --}}
+                        @endforeach
                     </tbody>
                 </table>
             </div>
