@@ -2,7 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+
+use function PHPUnit\Framework\returnSelf;
 
 class CategoryController extends Controller
 {
@@ -13,13 +18,22 @@ class CategoryController extends Controller
 
     public function store(Request $request)
     {
-        $validated = $request->validate([
-            'name' => 'required|unique:categories|max:255',
-        ],
-        [
-            'name.required' => 'Give A Category Name',
-            'name.unique' => 'Make the Category Name unique',
-            'name.max' => 'The Category Name is too long',
+        $request->validate([
+            'name' => 'required|max:255',
         ]);
+
+        // Category::insert([
+        //     'user_id' => Auth::user()->id,
+        //     'category_name' => $request->name,
+        //     'created_at' => Carbon::now(),
+        //     'updated_at' => Carbon::now(),
+        // ]);
+
+        $category = new Category();
+        $category->user_id = Auth::user()->id;
+        $category->category_name = $request->name;
+        $category->save();
+
+        return back()->with('success', 'Category has Created Successfully!!');
     }
 }

@@ -6,6 +6,9 @@
     </x-slot>
 
     <div class="container">
+        @if (session('success'))
+            <p class="alert alert-success" >{{ session('success') }} </p>
+        @endif
         <div class="row mt-5">
             <div class="col-7">
                 <table class="table">
