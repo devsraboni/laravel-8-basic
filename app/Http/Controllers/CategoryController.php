@@ -14,11 +14,7 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $categories = DB::table('categories')
-                        ->join('users', 'categories.user_id', 'users.id')
-                        ->select('categories.*', 'users.name')
-                        ->latest()->paginate(5);
-        // $categories = Category::latest()->paginate(5);
+        $categories = Category::latest()->paginate(5);
         return view('admin.category.index', compact('categories'));
     }
 
@@ -36,5 +32,22 @@ class CategoryController extends Controller
         ]);
 
         return back()->with('success', 'Category has Created Successfully!!');
+    }
+
+    public function edit($id)
+    {
+        $category = Category::find($id);
+        return view('admin.category.edit', compact('category'));
+    }
+
+
+    public function update(Request $request, $id)
+    {
+        $category = Category::find($id)->update([
+            'category_name' => $request->name,
+            'user_id' => Auth::user()->id,
+        ]);
+
+        return redirect()->route('category.index')->with('success', 'Category has Updated Successfully!!');
     }
 }
