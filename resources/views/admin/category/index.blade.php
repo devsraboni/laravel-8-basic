@@ -88,6 +88,7 @@
                                 @endif
                             </td>
                             <td>
+                                <a href="{{ url('category/restore/'.$trash->id) }}" class="btn btn-sm btn-secondary">Restore</a>
                                 <a href="" class="btn btn-sm btn-warning">Delete Permanently</a>
                             </td>
                         </tr>

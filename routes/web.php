@@ -9,6 +9,7 @@ Route::post('/category/store', [CategoryController::class, 'store'])->name('cate
 Route::get('/category/edit/{id}', [CategoryController::class, 'edit'])->name('category.edit');
 Route::post('/category/update/{id}', [CategoryController::class, 'update'])->name('category.update');
 Route::get('/category/softdelete/{id}', [CategoryController::class, 'softDelete'])->name('category.softdelete');
+Route::get('/category/restore/{id}', [CategoryController::class, 'restore'])->name('category.restore');
 
 Route::get('/', function () {
     return view('welcome');
