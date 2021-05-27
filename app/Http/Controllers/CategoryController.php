@@ -70,4 +70,11 @@ class CategoryController extends Controller
         Category::withTrashed()->find($id)->restore();
         return redirect()->route('category.index')->with('success', 'Category has Restored Successfully!!');
     }
+
+
+    public function delete($id)
+    {
+        Category::onlyTrashed()->find($id)->forceDelete();
+        return redirect()->route('category.index')->with('success', 'Category has Deleted Permanently !!');
+    }
 }
