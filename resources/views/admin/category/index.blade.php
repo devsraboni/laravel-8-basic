@@ -31,6 +31,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $categories->links() }}
             </div>
             <div class="col-1"></div>
             <div class="col-4">
