@@ -25,8 +25,14 @@
                         <tr>
                             <td>{{ $categories->firstItem()+$loop->index }}</td>
                             <td>{{ $category->category_name }}</td>
-                            <td>{{ $category->user->name }}</td>
-                            <td>{{ $category->created_at->diffForHumans() }}</td>
+                            <td>{{ $category->name }}</td>
+                            <td>
+                                @if ($category->created_at == NULL)
+                                    <span class="text-danger"> No Date Set</span>
+                                @else
+                                    {{ Carbon\Carbon::parse($category->created_at)->diffForHumans() }}
+                                @endif
+                            </td>
                         </tr>
                         @endforeach
                     </tbody>
