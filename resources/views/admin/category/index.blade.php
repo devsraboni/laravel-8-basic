@@ -25,7 +25,7 @@
                         <tr>
                             <td>{{ $categories->firstItem()+$loop->index }}</td>
                             <td>{{ $category->category_name }}</td>
-                            <td>{{ $category->user_id }}</td>
+                            <td>{{ $category->user->name }}</td>
                             <td>{{ $category->created_at->diffForHumans() }}</td>
                         </tr>
                         @endforeach
