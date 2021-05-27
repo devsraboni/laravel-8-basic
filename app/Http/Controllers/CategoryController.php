@@ -15,7 +15,8 @@ class CategoryController extends Controller
     public function index()
     {
         $categories = Category::latest()->paginate(5);
-        return view('admin.category.index', compact('categories'));
+        $trashes = Category::onlyTrashed()->latest()->paginate(3);
+        return view('admin.category.index', compact('categories', 'trashes'));
     }
 
     public function store(Request $request)
@@ -54,5 +55,12 @@ class CategoryController extends Controller
         $category['user_id'] = Auth::user()->id;
         DB::table('categories')->where('id', $id)->update($category);
         return redirect()->route('category.index')->with('success', 'Category has Updated Successfully!!');
+    }
+
+
+    public function softDelete($id)
+    {
+        $category = Category::find($id)->delete();
+        return back()->with('success', 'Category Moved to Trash!!');
     }
 }
