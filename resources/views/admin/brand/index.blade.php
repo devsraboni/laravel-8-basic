@@ -26,7 +26,7 @@
                         <tr>
                             <td>{{ $brands->firstItem()+$loop->index }}</td>
                             <td>{{ $brand->brand_name }}</td>
-                            <td>{{ $brand->brand_image }}</td>
+                            <td><img style="width:50px;height:50px;border-radius:50%" src="{{ asset($brand->brand_image) }}" alt=""></td>
                             <td>
                                 @if ($brand->created_at == NULL)
                                     <span class="text-danger"> No Date Set</span>
@@ -46,7 +46,7 @@
             </div>
             <div class="col-1"></div>
             <div class="col-4">
-                <form action="#" method="POST">
+                <form action="{{ route('brand.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="mb-3">
                         <label for="brand_name" class="form-label">Brand Name</label>
@@ -56,7 +56,10 @@
                         @enderror
                     </div>
                     <div class="mb-3">
-                        <input type="file" name="brand_image">
+                        <input type="file" name="brand_image" class="@error('brand_name') is-invalid @enderror">
+                        @error('brand_image')
+                            <span class="invalid-feedback">{{ $message }}</span>
+                        @enderror
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
                 </form>
