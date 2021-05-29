@@ -4,6 +4,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
+use Laravel\Jetstream\Rules\Role;
 
 // Category Routes
 Route::get('/category', [CategoryController::class, 'index'])->name('category.index');
@@ -17,6 +18,8 @@ Route::get('/category/delete/{id}', [CategoryController::class, 'delete'])->name
 // Brand Routes
 Route::get('/brand', [BrandController::class, 'index'])->name('brand.index');
 Route::post('/brand/store', [BrandController::class, 'store'])->name('brand.store');
+Route::get('/brand/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
+Route::post('/brand/update/{id}', [BrandController::class, 'update'])->name('brand.update');
 
 
 Route::get('/', function () {
