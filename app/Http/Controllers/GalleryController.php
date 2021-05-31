@@ -18,7 +18,7 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'gallery' => "required",
+            'gallery_image' => "required",
         ]);
 
         $gallery_image = $request->file('gallery_image');
