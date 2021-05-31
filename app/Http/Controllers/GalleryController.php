@@ -9,6 +9,11 @@ use Intervention\Image\Facades\Image;
 
 class GalleryController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     public function index()
     {
         $galleries = Gallery::latest()->get();
