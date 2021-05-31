@@ -28,6 +28,10 @@ Route::get('/brand/delete/{id}', [BrandController::class, 'delete'])->name('bran
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
 Route::post('/gallery/store', [GalleryController::class, 'store'])->name('gallery.store');
 
+// Email Verify Routes
+Route::get('/email/verify', function () {
+    return view('auth.verify-email');
+})->middleware('auth')->name('verification.notice');
 
 Route::get('/', function () {
     return view('welcome');
