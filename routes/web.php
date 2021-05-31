@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\GalleryController;
 use App\Models\User;
 use Illuminate\Support\Facades\Route;
 use Laravel\Jetstream\Rules\Role;
@@ -21,6 +22,11 @@ Route::post('/brand/store', [BrandController::class, 'store'])->name('brand.stor
 Route::get('/brand/edit/{id}', [BrandController::class, 'edit'])->name('brand.edit');
 Route::post('/brand/update/{id}', [BrandController::class, 'update'])->name('brand.update');
 Route::get('/brand/delete/{id}', [BrandController::class, 'delete'])->name('brand.delete');
+
+
+// Gallery Routes
+Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+Route::post('/gallery/store', [GalleryController::class, 'store'])->name('gallery.store');
 
 
 Route::get('/', function () {
